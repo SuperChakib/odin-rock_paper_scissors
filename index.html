@@ -4,11 +4,26 @@
 <head>
     <meta charset="UTF-8" />
     <title>Rock Paper Scissors!</title>
-    <script src="./functions.js"></script>
+    <script defer src="./functions.js"></script>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-
+    <div class="game">
+        <h1>Rock! Paper! Scissors</h1>
+        <h2>Choose your hand!</h2>
+        <div class="cards">
+            <button>Rock</button>
+            <button>Paper</button>
+            <button>Scissors</button>
+        </div>
+        <h2>Results</h2>
+        <div>
+            <p>Player: <span id="player-score">0</span> - <span id="computer-score">0</span>: Computer</p>
+            <p id="message"></p>
+        </div>
+    </div>
+    
 </body>
 
 </html>

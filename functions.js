@@ -1,52 +1,58 @@
-const computerPlay = () => {
+let buttons = document.querySelectorAll(".cards button");
+buttons.forEach((button) => button.addEventListener("click", playRound));
+
+let result = document.querySelector("#message");
+
+function computerPlay() {
   let cards = ["Rock", "Paper", "Scissors"];
-
   return cards[Math.floor(Math.random() * 3)];
-};
+}
 
-const capitalizeFirst = (string) => {
+function capitalizeFirst(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
-};
+}
 
-const playRound = (playerSelection, computerSelection) => {
-  playerSelection = playerSelection.toLowerCase();
-  computerSelection = computerSelection.toLowerCase();
+let playerScore = 0;
+let computerScore = 0;
+
+function playRound(playerSelection, computerSelection) {
+  /* if (!playerScore && !computerScore)
+    document.getElementById("message").textContent = ""; */
+
+  playerSelection = this.textContent.toLowerCase();
+  computerSelection = computerPlay().toLowerCase();
 
   if (playerSelection === computerSelection) {
-    return `Two ${capitalizeFirst(playerSelection)}! It's a tie!`;
-  }
-  if (
+    result.textContent = `Two ${capitalizeFirst(playerSelection)}! It's a tie!`;
+  } else if (
     (playerSelection === "rock" && computerSelection === "paper") ||
     (playerSelection === "paper" && computerSelection === "scissors") ||
     (playerSelection === "scissors" && computerSelection === "rock")
   ) {
-    return `You lose! ${capitalizeFirst(
+    result.textContent = `You lose! ${capitalizeFirst(
       computerSelection
     )} beats ${capitalizeFirst(playerSelection)}.`;
-  }
-  if (
+    computerScore++;
+  } else if (
     (computerSelection === "rock" && playerSelection === "paper") ||
     (computerSelection === "paper" && playerSelection === "scissors") ||
     (computerSelection === "scissors" && playerSelection === "rock")
   ) {
-    return `You win! ${capitalizeFirst(
+    result.textContent = `You win! ${capitalizeFirst(
       playerSelection
     )} beats ${capitalizeFirst(computerSelection)}.`;
+    playerScore++;
   }
-  return "Invalid name. Write 'Paper', 'Rock' or 'Scissors'.";
-};
 
-let playerSelection = "rock";
-let computerSelection = computerPlay();
+  document.getElementById("computer-score").textContent = computerScore;
+  document.getElementById("player-score").textContent = playerScore;
 
-console.log(playRound(playerSelection, computerSelection));
-
-let game = () => {
-  for (let i = 5; i > 0; i++) {
-    playerSelection = prompt("What do you choose?", "");
-    if (!playerSelection) return;
-    console.log(playRound(playerSelection, computerPlay()));
+  if (computerScore === 5) {
+    result.innerHTML = "<h3>PC won the game</h3>";
+    [playerScore, computerScore] = [0, 0];
   }
-};
-
-game();
+  if (playerScore === 5) {
+    result.innerHTML = "<h3>You won the game</h3>";
+    [playerScore, computerScore] = [0, 0];
+  }
+}
