@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+  background-color: ivory;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: auto;
+}
+
+.game > h1 {
+  margin-bottom: 50px;
+}
+
+.cards {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 50px;
+}
+
+button {
+  min-width: 100px;
+  min-height: 100px;
+}
+
+.score {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score * {
+  margin: 0;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score p {
+  font-size: 40px;
+}
+
+#message {
+  height: 100px;
+}
